@@ -1,0 +1,24 @@
+# Runs on PRs so the repo is PR-ready; install CodeRabbit GitHub App for AI reviews.
+# CodeRabbit triggers automatically on pull_request when the app is installed.
+name: PR checks (CodeRabbit)
+
+on:
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  pr-ready:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Verify app imports
+        run: python -c "import streamlit; from utils import calculate_monthly_savings, paper_cut_yearly_impact, goal_eta; print('OK')"
