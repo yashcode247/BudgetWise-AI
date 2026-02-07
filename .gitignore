@@ -1,7 +1,7 @@
-# Environment and secrets — do not commit
+# Environment and secrets — do not commit (keep .env.example)
 .env
 .env.local
-*.env
+!.env.example
 
 # Python
 __pycache__/
